@@ -54,6 +54,7 @@ Applications are just html/css/javascript pages that are loaded into an iframe. 
 }
 ```
 
+### Format of JSON in installedApps.json and systemApps.json
 | Property | Description | Type | 
 |----------|-------------|------|
 | data-app-name | Registered name of the application | string |
@@ -67,3 +68,18 @@ Applications are just html/css/javascript pages that are loaded into an iframe. 
 | data-multiwindow | Prevents multiple instances when true | bool |
 | data-file-associations | Array of files extensions the application will open | array[string] |
 | data-subscriptions | Value of message subscriptions to be sent to the iframe| array[string] | 
+
+## sbus
+The sbus is a simple module that allows the passing of system messages to the window manager. Right now this is to open files with the file handling and play system wide sounds.
+
+Play Notification Sound Example
+```
+sbus.playSound("notification");
+```
+
+### Implemented sbus Calls
+| Method | Description |
+|--------|-------------|
+| playSound("") | Play a sound of types notification,email, or message cache | 
+| incrementSystemCounter("") | Increments counters located in systemtray of types calendar, mail, message, and voip. |
+| updateSystemCounter("") | Sets counters located in systemtray of types calendar, mail, message and voip | 
