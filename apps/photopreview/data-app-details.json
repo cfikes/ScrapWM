@@ -1,0 +1,13 @@
+{
+    "data-app-name": "Photo Preview",
+    "data-app-url": "apps/photopreview/index.html",
+    "data-app-icon": "apps/photopreview/icon.png",
+    "data-window-title": "Photo Preview",
+    "data-window-statusbar-text": "",
+    "data-window-size": "800x600",
+    "data-window-minsize": "640x480",
+    "data-window-noresize": false,
+    "data-multiwindow": true,
+    "data-file-associations" : [".jpg", ".png", ".jpeg", ".webp", ".svg"],
+    "data-subscriptions": []
+}

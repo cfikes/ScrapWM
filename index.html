@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ScrapWM</title>
+    <link href="styles.css" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css" rel="stylesheet">
+</head>
+<body>
+
+<!-- Global Header -->
+<div id="globalHeader" class="global-header">
+    <!-- Left Section -->
+    <div class="global-header-left">
+        <i class="fas fa-computer systemMenuItem" id="systemMenuButton"><span class="source-code-pro-font"></span></i> <!-- System Menu Icon -->
+        <div id="extraSystemMenus"></div>
+    </div>
+
+    <!-- Center Section -->
+    <div class="global-header-center">
+        <span id="globalHeaderTitle" class="source-code-pro-font">ScrapWM</span>
+    </div>
+
+    <!-- Right Section -->
+    <div class="global-header-right">
+        <div id="systemTray">
+            <!-- Voip -->
+            <i class="fas fa-phone systemMenuItem" id="systemMenuVoipButton">
+                <span class=" systemTrayCounter">0</span>
+            </i>        
+            <!-- Messages -->
+            <i class="fas fa-comments systemMenuItem" id="systemMenuMessageButton">
+                <span class="systemTrayCounter">0</span>
+            </i>        
+            <!-- Mail -->
+            <i class="fas fa-envelope systemMenuItem" id="systemMenuMailButton">
+                <span class="systemTrayCounter">0</span>
+            </i>        
+            <!-- Calendar -->
+            <i class="fas fa-calendar-alt systemMenuItem" id="systemMenuCalendarButton">
+                <span class="systemTrayCounter">0</span>
+            </i>
+        </div>
+        <!-- System Clock -->
+        <span id="systemClock" class="source-code-pro-font">12:00 PM</span>
+    </div>
+</div>
+
+<!-- System Menu Popup -->
+<div id="systemMenu" class="system-menu"></div>
+
+<!-- Desktop -->
+<div id="desktop"></div>
+
+<!-- Toolbar for creating new canvas and other tools -->
+<div id="toolbar">    
+    <!-- All Apps -->
+    <i class="base-app-shortcut" id="allApps">
+        <img src="/vfs/system/icons/application-w.png" class="app-icon"/>
+    </i>
+    <!-- Running Apps-->
+    <div id="runningApps"></div>
+</div>
+
+<!-- Main Window Manager Logic -->
+<script src="scripts.js"></script>
+
+<!-- sbus connection -->
+<script src="sbus.js" type="module"></script>
+
+</body>
+</html>

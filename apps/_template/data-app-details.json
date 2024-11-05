@@ -1,0 +1,13 @@
+{
+    "data-app-name": "Template",
+    "data-app-url": "apps/template/index.html",
+    "data-app-icon": "apps/template/icon.png",
+    "data-window-title": "Template",
+    "data-window-statusbar-text": "",
+    "data-window-size": "380x500",
+    "data-window-minsize": "360x360",
+    "data-window-noresize": true,
+    "data-multiwindow": false,
+    "data-file-associations" : [],
+    "data-subscriptions": []
+}

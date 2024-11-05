@@ -1,0 +1,615 @@
+/* Import Fonts */
+@import url('vfs/system/fonts/ProzaLibre.css');
+
+/* Theme Variables */
+:root {
+    --default-font: 'Proza Libre';
+    --bg-color: #f4f4f4;
+    --primary-bg-color: #333;
+    --text-color: #fff;
+    --menu-text-color: #000;
+    --border-color: #ccc;
+    --highlight-color: #ff9800;
+    --secondary-bg-color: #e0e0e0;
+    --popup-bg-color: rgba(204, 204, 204, 0.85);
+    --shadow-color: rgba(0, 0, 0, 0.2);
+    --toolbar-bg-color: var(--primary-bg-color);
+    --toolbar-hover-bg-color: var(--primary-bg-color);
+    --toolbar-border-radius: 10px;
+    --bg-image: url('vfs/system/backgrounds/background01.jpg');
+}
+
+/* Universal Styles */
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    font-family: var(--default-font);
+    overflow: hidden;
+    background-color: var(--bg-color);
+}
+
+#desktop {
+    position: relative;
+    width: 100vw;
+    height: 100vh;
+    background-color: var(--text-color);
+    border: 1px solid var(--border-color);
+    background-image: var(--bg-image);
+    background-size: cover;
+}
+
+/* Toolbar styling */
+#toolbar {
+    position: absolute;
+    top: 50%;
+    left: -65px;
+    width: 80px;
+    transform: translateY(-50%);
+    background-color: var(--toolbar-bg-color);
+    padding: 10px 0;
+    box-shadow: var(--shadow-color) 2px 2px 2px;
+    border-radius: 0 var(--toolbar-border-radius) var(--toolbar-border-radius) 0;
+    z-index: 1000;
+    transition: left 0.3s;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    transition: all 0.3s ease;
+}
+
+#toolbar::before {
+    content: "";
+    position: absolute;
+    right: 0;
+    top: 0;
+    bottom: 0;
+    width: 10px;
+    background-color: var(--toolbar-bg-color);
+    z-index: 1001;
+    border-radius: 0 var(--toolbar-border-radius) var(--toolbar-border-radius) 0;
+}
+
+/* Slide in when hovered */
+#toolbar:hover {
+    left: 0;
+    border-radius: 0 var(--toolbar-border-radius) var(--toolbar-border-radius) 0;
+}
+#toolbar.locked {
+    left: 0;
+    border-radius: 0 var(--toolbar-border-radius) var(--toolbar-border-radius) 0;
+}
+
+#toolbar.keep-open {
+    left: 0 !important;
+    transition: none;
+}
+
+/* Toolbar icon styling */
+#toolbar i, .app-shortcut {
+    display: block;
+    color: var(--text-color);
+    font-size: 40px;
+    margin: 10px 0;
+    cursor: pointer;
+    text-align: center;
+}
+
+/* Global Header Styling */
+.global-header {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 40px;
+    background-color: var(--primary-bg-color);
+    color: var(--text-color);
+    display: flex;
+    align-items: center;
+    z-index: 9999; /* Ensure it's always on top */
+    padding: 0 10px;
+}
+
+/* Sections of the Global Header */
+.global-header-left,
+.global-header-center,
+.global-header-right {
+    display: flex;
+    align-items: center;
+}
+
+.global-header-left {
+    flex: 1;
+    justify-content: flex-start;
+}
+
+.global-header-center {
+    flex: 1;
+    justify-content: center;
+    font-size: 20px;
+    font-weight: bold;
+    color: var(--text-color); /* Ensures consistency */
+}
+
+.global-header-right {
+    flex: 1;
+    justify-content: flex-end;
+    font-size: 20px;
+    color: var(--text-color); /* Ensures consistency */
+}
+
+.global-header i {
+    font-size: 20px;
+    margin-right: 10px;
+    cursor: pointer;
+    color: var(--text-color); /* Ensures consistency */
+}
+
+
+/* System Menu Popup */
+.system-menu {
+    width: 225px;
+    display: none;
+    position: absolute;
+    top: 40px; /* Adjust to be below the global header */
+    left: 10px; /* Adjust to align with the button */
+    background-color: var(--text-color);
+    border: 1px solid var(--border-color);
+    box-shadow: 0 4px 8px var(--shadow-color);
+    z-index: 1001;
+    padding: 5px;
+    color: var(--primary-bg-color);
+}
+
+.systemMenuItem {
+    cursor: pointer;
+    letter-spacing: 1px;
+    color: var(--primary-bg-color); /* Text color */
+}
+
+.systemMenuItem:hover {
+    color: var(--highlight-color); /* Highlight on hover */
+}
+
+.systemTrayCounter {
+    margin-left: 4px;;
+}
+
+/* Menu Item Container */
+.menu-item {
+    display: flex;
+    align-items: center;
+    padding: 8px 12px;
+    cursor: pointer;
+    transition: background-color 0.2s ease-in-out;
+    color: var(--text-color);
+    font-family: var(--default-font);
+}
+
+/* Icon Styling */
+.menu-item-icon {
+    width: 20px;
+    height: 20px;
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-position: center;
+    margin-right: 8px;
+}
+
+/* Text Styling */
+.menu-item-text {
+    font-size: 14px;
+    color: var(--menu-text-color);
+}
+
+/* Hover Effect */
+.menu-item:hover {
+    background-color: var(--highlight-color);
+}
+
+/* Ensure app-shortcut is centered */
+.app-shortcut {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 42px;
+    height: 42px;
+}
+
+/* Window Container */
+.window-container {
+    position: absolute;
+    border: 2px solid var(--border-color);
+    background-color: var(--text-color);
+    overflow: hidden;
+    transform-origin: center center;
+    z-index: 10;
+}
+
+/* Window Header */
+.window-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background-color: var(--primary-bg-color);
+    color: var(--text-color);
+    padding: 8px 10px;
+    user-select: none;
+    cursor: move;
+    z-index: 20;
+}
+
+.window-header-left, .window-header-center, .window-header-right {
+    display: flex;
+    align-items: center;
+}
+
+.window-header-center {
+    flex-grow: 1;
+    justify-content: center;
+}
+
+.window-app-title {
+    font-size: 16px;
+    color: var(--text-color);
+}
+
+.rotate-button, .reset-rotation-button, .maximize-button, .close-button, .default-size-button, .minimize-button {
+    font-size: 20px;
+    color: var(--text-color);
+    margin-right: 8px;
+    cursor: pointer;
+}
+
+/* App Container */
+.app-container {
+    position: relative;
+    width: 100%;
+    height: calc(100% - 64px);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: var(--bg-color);
+}
+
+/* Selection Bar */
+.selection-bar {
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    background-color: var(--primary-bg-color);
+    border-radius: 8px;
+    padding: 10px;
+    width: 90%;
+    max-width: 400px;
+}
+
+.selection-bar i {
+    font-size: 24px;
+    color: var(--text-color);
+    cursor: pointer;
+    margin: 0 10px;
+}
+
+/* Window Status Bar */
+.window-statusbar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background-color: var(--primary-bg-color);
+    color: var(--text-color);
+    padding: 8px 10px;
+    height: 32px;
+}
+
+.window-statusbar-left, .window-statusbar-center, .window-statusbar-right {
+    display: flex;
+    align-items: center;
+}
+
+.window-statusbar-center {
+    flex-grow: 1;
+    justify-content: center;
+}
+
+.window-statusbar-text {
+    font-size: 14px;
+    color: var(--text-color);
+}
+
+/* Resize Handles */
+.resize-handle {
+    position: absolute;
+    width: 12px;
+    height: 12px;
+    font-size: 12px;
+    color: var(--primary-bg-color);
+    z-index: 100;
+}
+
+.resize-handle.right {
+    right: 0;
+    bottom: 0;
+    cursor: se-resize;
+}
+
+.resize-handle.left {
+    left: 0;
+    bottom: 0;
+    cursor: sw-resize;
+}
+
+.no-resize .resize-handle {
+    display: none;
+}
+
+/* Improved Close Wrapper */
+.close-wrapper {
+    display: flex;
+    align-items: center;
+}
+
+.close-wrapper i {
+    margin-left: 8px;
+    cursor: pointer;
+}
+
+/* Improved Canvas Styling */
+canvas {
+    display: block;
+    background-color: var(--text-color);
+    width: 100%;
+    height: 100%;
+    user-select: none;
+    border: none;
+}
+
+/* Video Container */
+.video-container {
+    position: absolute;
+    top: 36px;
+    left: 0;
+    width: 100%;
+    height: calc(100% - 36px);
+    background-color: black;
+    z-index: 1;
+}
+
+/* Updated Cursor Styling */
+.rotate-button, .reset-rotation-button, .maximize-button, .close-button, .default-size-button, .menu-window-button, .minimize-button {
+    cursor: pointer !important;
+}
+
+/* Miscellaneous Adjustments */
+.window-container {
+    border-radius: 8px;
+}
+
+.selection-bar i:hover, .resize-handle:hover, .rotate-button:hover, .reset-rotation-button:hover, .maximize-button:hover, .close-button:hover, .default-size-button:hover, .menu-window-button:hover, .minimize-button:hover {
+    color: var(--highlight-color);
+}
+
+body.resizing,
+.disable-iframe-events {
+    user-select: none;
+}
+
+.disable-iframe-events iframe {
+    pointer-events: none;
+}
+
+.disable-pointer-events * {
+    pointer-events: none;
+}
+
+.app-shortcut {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 50px;
+    height: 50px;
+    margin: 5px;
+}
+
+.app-shortcut img {
+    width: 42px;
+    height: 42px;
+    object-fit: contain;
+    transition: ease-in-out 0.2s;
+}
+
+.app-shortcut img:hover {
+    transform: scale(1.3);
+}
+
+.base-app-shortcut {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 50px;
+    height: 50px;
+    margin: 5px;
+}
+
+.base-app-shortcut img {
+    width: 42px;
+    height: 42px;
+    object-fit: contain;
+    transition: ease-in-out 0.2s;
+}
+
+.base-app-shortcut img:hover {
+    transform: scale(1.3);
+}
+
+.window-container {
+    will-change: transform;
+}
+
+/* App Grid Container */
+.app-grid {
+    display: flex;
+    flex-wrap: wrap;
+    align-content: flex-start;
+    padding: 10px;
+    gap: 0;
+    overflow-y: auto;
+    height: calc(100% - 32px);
+    width: 100%;
+    box-sizing: border-box;
+}
+
+/* App Grid Item */
+.app-grid-item {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    transition: transform 0.1s, box-shadow 0.1s;
+    margin: 10px;
+}
+
+.app-grid-item:hover {
+    transform: scale(1.05);
+    box-shadow: 0 4px 8px var(--shadow-color);
+}
+
+/* App Grid Icon */
+.app-grid-icon {
+    width: 72px;
+    height: 72px;
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-position: center;
+    border-radius: 10px;
+    margin-bottom: 5px;
+}
+
+/* App Grid Name */
+.app-grid-name {
+    font-weight: 400;
+    font-size: 12px;
+    text-align: center;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    width: 108px;
+}
+
+/* Custom Context Menu */
+.custom-context-menu {
+    position: absolute;
+    background-color: var(--text-color);
+    border: 1px solid var(--border-color);
+    box-shadow: 0 2px 5px var(--shadow-color);
+    z-index: 9999;
+    padding: 5px;
+    display: none;
+}
+
+.context-item {
+    padding: 8px 12px;
+    cursor: pointer;
+}
+
+.context-item:hover {
+    background-color: var(--secondary-bg-color);
+}
+
+/* Running apps container within the toolbar */
+#runningApps {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    transition: all 0.3s ease;
+}
+
+/* Running app icons */
+.running-app-icon {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 50px;
+    height: 50px;
+    margin: 5px 0;
+    opacity: 0;
+    transform: scale(0.5);
+    transition: transform 0.5s cubic-bezier(0.68, -0.55, 0.27, 1.55), opacity 0.4s ease-in-out;
+}
+
+.running-app-icon img {
+    width: 42px;
+    height: 42px;
+    object-fit: contain;
+    cursor: pointer;
+    transition: transform 0.2s;
+}
+
+.running-app-icon img:hover {
+    transform: scale(1.2);
+}
+
+.running-app-icon.visible {
+    opacity: 1;
+    transform: scale(1);
+}
+
+/* Popup Window Snapping */
+.popup {
+    display: flex;
+    gap: 10px;
+    background-color: var(--popup-bg-color);
+    padding: 10px;
+    border: 1px solid var(--border-color);
+    border-radius: 5px;
+    box-shadow: 0 2px 10px var(--shadow-color);
+    position: absolute;
+    z-index: 1000;
+}
+
+.hidden {
+    display: none;
+}
+
+.snap-group {
+    display: flex;
+    align-items: center;
+    gap: 2px;
+}
+
+.snap-option {
+    height: 64px;
+    background-color: var(--secondary-bg-color);
+    border: 1px solid #888;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: background-color 0.2s;
+}
+
+.snap-option:hover {
+    background-color: var(--highlight-color);
+}
+
+/* Split Styling */
+[data-snap="left-half"],
+[data-snap="right-half"] {
+    width: 44px;
+}
+
+[data-snap="left-two-thirds"] {
+    width: 50px;
+}
+
+[data-snap="right-one-third"] {
+    width: 30px;
+}
+
+[data-snap="left-third"],
+[data-snap="center-third"],
+[data-snap="right-third"] {
+    width: 29px;
+}

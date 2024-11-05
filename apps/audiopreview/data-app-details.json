@@ -1,0 +1,13 @@
+{
+    "data-app-name": "Audio Preview",
+    "data-app-url": "apps/audiopreview/index.html",
+    "data-app-icon": "apps/audiopreview/icon.png",
+    "data-window-title": "Audio Preview",		
+    "data-window-statusbar-text": "",
+    "data-window-size": "500x120",
+    "data-window-minsize": "500x120",
+    "data-window-noresize": true,
+    "data-multiwindow": true,
+    "data-file-associations" : [".mp3", ".wav", ".ogg"],
+    "data-subscriptions": []
+}

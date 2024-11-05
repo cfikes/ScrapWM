@@ -1,0 +1,15 @@
+[   
+    {
+        "data-app-name": "About System",
+        "data-app-url": "apps/aboutsystem/index.html",
+        "data-app-icon": "apps/aboutsystem/icon.png",
+        "data-window-title": "About System",
+        "data-window-statusbar-text": "",
+        "data-window-size": "500x640",
+        "data-window-minsize": "500x640",
+        "data-window-noresize": true,
+        "data-multiwindow": false,
+        "data-file-associations" : [],
+        "data-subscriptions": []
+    }
+]

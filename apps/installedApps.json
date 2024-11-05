@@ -1,0 +1,93 @@
+[
+    {
+        "data-app-name": "Audio Preview",
+        "data-app-url": "apps/audiopreview/index.html",
+        "data-app-icon": "apps/audiopreview/icon.png",
+        "data-window-title": "Audio Preview",		
+        "data-window-statusbar-text": "",
+        "data-window-size": "500x120",
+        "data-window-minsize": "500x120",
+        "data-window-noresize": true,
+        "data-multiwindow": true,
+        "data-file-associations" : [".mp3", ".wav", ".ogg"],
+        "data-subscriptions": []
+    },
+    {
+        "data-app-name": "Calculator",
+        "data-app-url": "apps/calc/index.html",
+		"data-app-icon": "apps/calc/icon.png",
+        "data-window-title": "Calculator",
+        "data-window-statusbar-text": "",
+		"data-window-size": "320x600",
+        "data-window-minsize": "320x600",
+		"data-window-noresize": false,
+		"data-multiwindow": true,
+		"data-file-associations": [],
+        "data-subscriptions": []
+    },
+    {
+        "data-app-name": "Dev Help",
+        "data-app-url": "apps/devhelp/index.html",
+        "data-app-icon": "apps/devhelp/icon.png",
+        "data-window-title": "Developer Help",
+        "data-window-statusbar-text": "",
+        "data-window-size": "380x500",
+        "data-window-minsize": "360x360",
+        "data-window-noresize": false,
+        "data-multiwindow": false,
+        "data-file-associations" : [],
+        "data-subscriptions": []
+    },
+    {
+        "data-app-name": "File Browser",
+        "data-app-url": "apps/filebrowser/index.html",
+        "data-app-icon": "apps/filebrowser/icon.png",
+		"data-window-title": "File Browser",
+        "data-window-statusbar-text": "",
+		"data-window-size": "800x600",
+        "data-window-minsize": "640x480",
+		"data-window-noresize": false,
+        "data-multiwindow": true,
+        "data-file-associations": [],
+        "data-subscriptions": []
+    },
+    {
+        "data-app-name": "Photo Preview",
+        "data-app-url": "apps/photopreview/index.html",
+        "data-app-icon": "apps/photopreview/icon.png",
+        "data-window-title": "Photo Preview",
+        "data-window-statusbar-text": "",
+        "data-window-size": "800x600",
+        "data-window-minsize": "640x480",
+		"data-window-noresize": false,
+        "data-multiwindow": true,
+        "data-file-associations" : [".jpg", ".png", ".jpeg", ".webp", ".gif", ".svg"],
+        "data-subscriptions": []
+    },
+    {
+        "data-app-name": "Text Preview",
+        "data-app-url": "apps/textpreview/index.html",
+        "data-app-icon": "apps/textpreview/icon.png",
+        "data-window-title": "Text Preview",
+        "data-window-statusbar-text": "",
+        "data-window-size": "800x600",
+        "data-window-minsize": "640x480",
+        "data-window-noresize": false,
+        "data-multiwindow": true,
+        "data-file-associations": [".txt", ".md", ".csv"],
+        "data-subscriptions": [""]
+    },
+    {
+        "data-app-name": "Video Preview",
+        "data-app-url": "apps/videopreview/index.html",
+        "data-app-icon": "apps/videopreview/icon.png",
+        "data-window-title": "Video Preview",
+        "data-window-statusbar-text": "",
+        "data-window-size": "800x600",
+        "data-window-minsize": "640x480",
+		"data-window-noresize": false,
+        "data-multiwindow": true,
+        "data-file-associations" : [".mp4", ".m4v", ".avi", ".mkv", ".vp8", ".vp9", ".webm"],
+        "data-subscriptions": []
+    }
+]

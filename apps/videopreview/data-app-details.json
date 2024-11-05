@@ -1,0 +1,13 @@
+{
+    "data-app-name": "Video Preview",
+    "data-app-url": "apps/videopreview/index.html",
+    "data-app-icon": "apps/videopreview/icon.png",
+    "data-window-title": "Video Preview",
+    "data-window-statusbar-text": "",
+    "data-window-size": "800x600",
+    "data-window-minsize": "640x480",
+    "data-window-noresize": false,
+    "data-multiwindow": true,
+    "data-file-associations" : [".mp4", ".m4v", ".avi", ".mkv", ".vp8", ".vp9", ".webm"],
+    "data-subscriptions": []
+}

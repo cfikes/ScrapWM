@@ -1,0 +1,83 @@
+@font-face {
+    font-family: 'Proza Libre';
+    src: url('woff/ProzaLibre-Bold.woff') format('woff');
+    font-weight: 700;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'Proza Libre';
+    src: url('woff/ProzaLibre-BoldItalic.woff') format('woff');
+    font-weight: 700;
+    font-style: italic;
+}
+
+@font-face {
+    font-family: 'Proza Libre';
+    src: url('woff/ProzaLibre-ExtraBold.woff') format('woff');
+    font-weight: 800;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'Proza Libre';
+    src: url('woff/ProzaLibre-ExtraBoldItalic.woff') format('woff');
+    font-weight: 800;
+    font-style: italic;
+}
+
+@font-face {
+    font-family: 'Proza Libre';
+    src: url('woff/ProzaLibre-Italic.woff') format('woff');
+    font-weight: 400;
+    font-style: italic;
+}
+
+@font-face {
+    font-family: 'Proza Libre';
+    src: url('woff/ProzaLibre-Light.woff') format('woff');
+    font-weight: 300;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'Proza Libre';
+    src: url('woff/ProzaLibre-LightItalic.woff') format('woff');
+    font-weight: 300;
+    font-style: italic;
+}
+
+@font-face {
+    font-family: 'Proza Libre';
+    src: url('woff/ProzaLibre-Medium.woff') format('woff');
+    font-weight: 500;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'Proza Libre';
+    src: url('woff/ProzaLibre-MediumItalic.woff') format('woff');
+    font-weight: 500;
+    font-style: italic;
+}
+
+@font-face {
+    font-family: 'Proza Libre';
+    src: url('woff/ProzaLibre-Regular.woff') format('woff');
+    font-weight: 400;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'Proza Libre';
+    src: url('woff/ProzaLibre-SemiBold.woff') format('woff');
+    font-weight: 600;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'Proza Libre';
+    src: url('woff/ProzaLibre-SemiBoldItalic.woff') format('woff');
+    font-weight: 600;
+    font-style: italic;
+}
