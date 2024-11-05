@@ -1,0 +1,2 @@
+# ScrapWM
+ Scrap Window Manager
