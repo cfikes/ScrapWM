@@ -1,3 +1,10 @@
+// scripts.js
+// Author: Christopher Fikes
+// License: Apache 2.0
+// Version: 0.0.1
+// Description: ScrapWM Window Manager
+// Source: https://github.com/cfikes/ScrapWM
+
 const desktop = document.getElementById('desktop');
 
 const ZIndexManager = (() => {

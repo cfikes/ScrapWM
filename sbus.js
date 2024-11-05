@@ -1,3 +1,10 @@
+// sbus.js
+// Author: Christopher Fikes
+// License: Apache 2.0
+// Version: 0.0.1
+// Description: System Bus for Local Communication
+// Source: https://github.com/cfikes/ScrapWM
+
 const sbus = (() => {
     // Private constants and variables
     const audioSettings = {
