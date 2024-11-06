@@ -11,7 +11,6 @@ Windows Manager and application framework for creating a desktop like experience
 * Audio Preview
   * Installed as User Application
   * Has file associations with mp3, wav and ogg
-  * Plays audio files and integrates into the sbus for file handling
 * Calculator
   * Installed as User Application
   * Basic Calculator App
@@ -24,15 +23,12 @@ Windows Manager and application framework for creating a desktop like experience
 * Photo Preview
   * Installed as User Application
   * Has file associations with jpg, jpeg, png, gif, webp and svg
-  * Previews images and integrates into the sbus for file handling
 * Text Preview
   * Installed as User Application
   * Has file associations with txt, csv, and md
-  * Views text documents and integrates into the sbus for file handling
 * Video Preview
   * Installed as User Application
   * Has file associations with mp4, m4v, vp8, vp9 and avi
-  * Plays video files and integrates into the sbus for file handling
 
 
 ## Application Structure
