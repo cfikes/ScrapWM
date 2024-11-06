@@ -5,7 +5,6 @@ document.addEventListener('DOMContentLoaded', () => {
     window.addEventListener('message', (event) => {
         if (event.data.action === 'openFile') {
             const filePath = event.data.path;
-            // Load the file content (simulated here, implement actual loading logic)
             loadFileContent(filePath);
         }
     });
@@ -16,11 +15,10 @@ document.addEventListener('DOMContentLoaded', () => {
                 if (!response.ok) {
                     throw new Error(`Could not load file: ${response.statusText}`);
                 }
-                return response.text(); // Read the content as text
+                return response.text();
             })
             .then(content => {
-                editor.value = content; // Set the content to the editor's value
-                console.log(`Loaded content from: ${filePath}`);
+                editor.value = content;
             })
             .catch(error => {
                 console.error('Error loading file:', error);
