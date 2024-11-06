@@ -1,0 +1,339 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="icon" type="image/x-icon" href="icon.ico">
+    <title>FikesMedia DocCam Viewer V2</title>
+    <link href="css/fa.css" rel="stylesheet">
+    <link href="css/app.css" rel="stylesheet">
+    <link href="css/intro.css" rel="stylesheet">
+    <style>
+        
+    </style>
+</head>
+<body>
+
+    <div id="flash-overlay"></div>
+    
+    <span id="emoji-preview" style="position: absolute; display: none;"></span>
+    <span id="pencil-preview" style="position: absolute; display: none;"></span>
+    <span id="eraser-preview" style="position: absolute; display: none;"></span>
+
+
+<div id="camera-container">
+    <video id="camera" autoplay></video>
+    <canvas id="draw-canvas"></canvas> <!-- Canvas for drawing -->
+</div>
+
+<div id="pip-container">
+    <video id="pip"></video>
+    <i class="fa-solid fa-expand" id="expand-pip"></i>
+    <i class="fa-solid fa-angles-up" id="toggle-position-pip"></i>
+</div>
+
+<div id="toolbar" class="">
+    <i class="fas fa-video toolbar-icon" id="camera-select" tooltip="Camera"></i> <!-- Camera -->
+    <i class="fas fa-pencil-alt toolbar-icon" id="pencil-tool"></i> <!-- Pencil -->
+    <i class="fas fa-eraser toolbar-icon" id="eraser-tool"></i> <!-- Eraser -->
+    <i class="fas fa-smile toolbar-icon" id="emoji-tool"></i> <!-- Emoji Picker -->
+    <i class="fas fa-minus toolbar-icon" id="zoom-out"></i> <!-- Zoom Out -->
+    <i class="fas fa-plus toolbar-icon" id="zoom-in"></i> <!-- Zoom In -->
+    <i class="fas fa-compress toolbar-icon" id="zoom-reset"></i> <!-- Zoom Reset -->
+    <i class="fas fa-rotate-right toolbar-icon" id="rotate"></i> <!-- Rotate -->
+    <i class="fas fa-pause toolbar-icon" id="camera-pause"></i> <!-- Pause Screen -->
+    <i class="fas fa-circle toolbar-icon" id="recording-button" style="color: red;"></i> <!-- Start Recording -->
+    <i class="fas fa-camera toolbar-icon" id="save-image"></i> <!-- Save Image -->
+    <i class="fas fa-window-restore toolbar-icon" id="pip-menu"></i> <!-- Pip Menu -->
+    <i class="fas fa-heart toolbar-icon" id="support" style="color: red;"></i> <!-- Support -->
+    <i class="fas fa-expand toolbar-icon" id="fullscreen"></i> <!-- Fullscreen -->
+</div>
+
+<div id="toolbar-view-control">
+    <i class="fas fa-angle-down" id="toolbar-toggle"></i>
+</div>
+
+
+
+<!-- Floating menu for Emoji Picker -->
+<div class="floating-menu" id="emoji-menu">
+    <!-- Emoji Size Options (using eraser size icons) -->
+    <!-- Extra-Small Emoji -->
+    <svg class="thickness-icon" id="extra-small-emoji" width="32" height="32">
+        <circle cx="16" cy="16" r="16" fill="black" />
+        <circle cx="16" cy="16" r="2" fill="white" /> <!-- Extra-Small White Circle -->
+    </svg>
+
+    <!-- Small Emoji -->
+    <svg class="thickness-icon" id="small-emoji" width="32" height="32">
+        <circle cx="16" cy="16" r="16" fill="black" />
+        <circle cx="16" cy="16" r="4" fill="white" /> <!-- Small White Circle -->
+    </svg>
+
+    <!-- Medium Emoji -->
+    <svg class="thickness-icon" id="medium-emoji" width="32" height="32">
+        <circle cx="16" cy="16" r="16" fill="black" />
+        <circle cx="16" cy="16" r="8" fill="white" /> <!-- Medium White Circle -->
+    </svg>
+
+    <!-- Large Emoji -->
+    <svg class="thickness-icon" id="large-emoji" width="32" height="32">
+        <circle cx="16" cy="16" r="16" fill="black" />
+        <circle cx="16" cy="16" r="11" fill="white" /> <!-- Large White Circle -->
+    </svg>
+
+    <!-- Extra-Large Emoji -->
+    <svg class="thickness-icon" id="extra-large-emoji" width="32" height="32">
+        <circle cx="16" cy="16" r="16" fill="black" />
+        <circle cx="16" cy="16" r="14" fill="white" /> <!-- Extra-Large White Circle -->
+    </svg>
+
+    <!-- Emoji Selection -->
+    <span class="emoji-item" id="emoji1">✔️</span>
+    <span class="emoji-item" id="emoji2">❌</span>
+    
+    <!-- Customizable Emoji Selection -->
+    <span class="fav-emoji" id="emojiFav1">👍</span>
+    <span class="fav-emoji" id="emojiFav2">👎</span>
+    <span class="fav-emoji" id="emojiFav3">🎉</span>
+    <span class="fav-emoji" id="emojiFav4">😎</span>
+    <span class="fav-emoji" id="emojiFav5">😍</span>
+    <span class="fav-emoji" id="emojiFav6">🤣</span>
+    <span class="fav-emoji" id="emojiFav7">🙄</span>
+    <span class="fav-emoji" id="emojiFav8">😢</span>
+    <span class="fav-emoji" id="emojiFav9">🤔</span>
+    <span class="fav-emoji" id="emojiFav10">💩</span>
+
+    <button id="emoji-search" class="mdc-button"><i class="fas fa-search"></i>Find More</button>
+
+</div>
+
+<div id="emoji-search-popup" class="emoji-search-popup" style="display: none;">
+    <div class="emoji-search-container">
+        <input type="text" id="emoji-search-input" placeholder="Search for an emoji" autocomplete="off"/>
+        <i id="clear-search" class="fa-solid fa-delete-left"></i>
+    </div>
+    <div id="emoji-search-results" class="emoji-search-results"></div> <!-- Results populate here -->
+</div>
+
+<!-- Popup menu for the heart icon -->
+<div id="heart-popup-menu">
+    <h3><i class="fas fa-video"></i> DocCam Viewer 2</h3>
+    <p>If you like what I'm doing, consider supporting me! <br>
+       Use the link below to donate. I do love coffee. 
+    </p>
+    <a href="https://buymeacoffee.com/cfikes" target="_blank" id="donate-btn"><h3><i class="fas fa-heart"></i> Buy me a coffee.</h3></a>
+    <a href="https://www.fikesmedia.com" target="_blank" id="donate-btn"><h4>Developed by FikesMedia</h4></a>
+    <button id="launch-tour" class="mdc-button">Start Tour</button>
+    <button id="close-heart-popup-btn" class="mdc-button">Close</button>
+</div>
+
+<!-- Popup menui for PiP-->
+<div id="pip-select-menu">
+    <h3>Select a PiP Camera</h3>
+    <select id="pip-options"></select>
+    <button id="select-pip-btn" class="mdc-button mdc-button--raised">Select</button>
+    <button id="cancel-pip-btn" class="mdc-button mdc-button--raised">Cancel</button>
+</div>
+
+<!-- PiP Resolution Selection Menu -->
+<div id="pip-resolution-select-menu" style="display:none;">
+    <h3>Select PiP  Resolution</h3>
+    <select id="pip-resolution-options"></select>
+    <button id="select-pip-resolution-btn" class="mdc-button mdc-button--raised">Select Resolution</button>
+    <button id="cancel-pip-resolution-btn" class="mdc-button mdc-button--raised">Cancel</button>
+</div>
+
+<!-- Popup menu for Loading spinner -->
+<div id="loading-popup">
+    <h3>Detecting Resolutions</h3>
+    <i class="fas fa-spinner"></i>
+</div>
+
+<!-- Recording Duration PopUP -->
+<div id="recording-duration">
+    <p id="recording-info">00:00</p>
+</div>
+
+<!-- Camera Selection Menu -->
+<div id="camera-select-menu">
+    <h3>Select Document Camera</h3>
+    <select id="camera-options"></select>
+    <button id="select-camera-btn" class="mdc-button mdc-button--raised">Select</button>
+    <button id="cancel-camera-btn" class="mdc-button mdc-button--raised">Cancel</button>
+</div>
+
+<!-- Resolution Selection Menu -->
+<div id="resolution-select-menu">
+    <h3>Select Resolution</h3>
+    <select id="resolution-options"></select>
+    <button id="select-resolution-btn" class="mdc-button mdc-button--raised">Select</button>
+    <button id="cancel-resolution-btn" class="mdc-button mdc-button--raised">Cancel</button>
+</div>
+
+<!-- Recording Options Menu -->
+<div id="recording-options-menu" style="display: none;">
+    <h3>Recording Options</h3>
+
+    <!-- Combined Video Quality and Bitrate Selection -->
+    <label for="quality-options">Select Recording Quality:</label>
+    <select id="quality-options">
+        <option value="1920x1080-high">1920x1080 High (30fps, 5Mbps)</option>
+        <option value="1920x1080-medium">1920x1080 Medium (30fps, 2.5Mbps)</option>
+        <option value="1920x1080-low">1920x1080 Low (15fps, 1Mbps)</option>
+        <option value="1280x720-high">1280x720 High (30fps, 4Mbps)</option>
+        <option value="1280x720-medium">1280x720 Medium (30fps, 2Mbps)</option>
+        <option value="1280x720-low">1280x720 Low (15fps, 1Mbps)</option>
+    </select>
+
+    <!-- Audio Recording Option -->
+    <div class="checkbox-container">
+        <input type="checkbox" id="record-audio-checkbox" checked>
+        <label for="record-audio-checkbox">Record Audio</label>
+    </div>
+
+    <!-- Audio Source Selection -->
+    <label for="audio-source-options">Select Audio Source:</label>
+    <select id="audio-source-options" disabled>
+        <!-- Options will be populated dynamically -->
+    </select>
+
+    <button id="start-recording-btn" class="mdc-button">Start Recording</button>
+    <button id="cancel-recording-options-btn" class="mdc-button">Cancel</button>
+</div>
+
+
+
+
+<!-- Floating menu for Pencil Tool -->
+<div class="floating-menu" id="pencil-menu">
+    <!-- Thickness Options -->
+
+    <span id="tour-pencil-thickness">
+    <!-- Extra-Thin Line -->
+    <svg class="thickness-icon" id="extra-thin-pencil" width="32" height="32">
+        <circle cx="16" cy="16" r="16" fill="black" />
+        <line x1="16" y1="6" x2="16" y2="26" style="stroke:white;stroke-width:1" />
+    </svg>
+
+    <!-- Thin Line -->
+    <svg class="thickness-icon" id="thin-pencil" width="32" height="32">
+        <circle cx="16" cy="16" r="16" fill="black" />
+        <line x1="16" y1="6" x2="16" y2="26" style="stroke:white;stroke-width:2" />
+    </svg>
+
+    <!-- Medium Line -->
+    <svg class="thickness-icon" id="medium-pencil" width="32" height="32">
+        <circle cx="16" cy="16" r="16" fill="black" />
+        <line x1="16" y1="6" x2="16" y2="26" style="stroke:white;stroke-width:4" />
+    </svg>
+
+    <!-- Thick Line -->
+    <svg class="thickness-icon" id="thick-pencil" width="32" height="32">
+        <circle cx="16" cy="16" r="16" fill="black" />
+        <line x1="16" y1="6" x2="16" y2="26" style="stroke:white;stroke-width:6" />
+    </svg>
+
+    <!-- Extra-Thick Line -->
+    <svg class="thickness-icon" id="extra-thick-pencil" width="32" height="32">
+        <circle cx="16" cy="16" r="16" fill="black" />
+        <line x1="16" y1="6" x2="16" y2="26" style="stroke:white;stroke-width:8" />
+    </svg>
+
+    <!-- Color Options -->
+    <i class="fas fa-circle toolbar-icon color-option" id="color1" style="color: black;"></i>
+    <i class="fas fa-circle toolbar-icon color-option" id="color2" style="color: red;"></i>
+    <i class="fas fa-circle toolbar-icon color-option" id="color3" style="color: orange;"></i>
+    <i class="fas fa-circle toolbar-icon color-option" id="color4" style="color: yellow;"></i>
+    <i class="fas fa-circle toolbar-icon color-option" id="color5" style="color: green;"></i>
+    <i class="fas fa-circle toolbar-icon color-option" id="color6" style="color: blue;"></i>
+    <i class="fas fa-circle toolbar-icon color-option" id="color7" style="color: purple;"></i>
+    <i class="fas fa-circle toolbar-icon color-option" id="color8" style="color: white;"></i>
+
+    
+    <!-- Custom Color Picker -->
+    <input type="color" id="custom-color" title="Custom Color">
+</div>
+
+
+<!-- Floating menu for Eraser Tool -->
+<div class="floating-menu" id="eraser-menu">
+    <!-- Thickness Options -->
+    <!-- Extra-Thin Eraser -->
+    <svg class="thickness-icon" id="extra-thin-eraser" width="32" height="32">
+        <circle cx="16" cy="16" r="16" fill="black" />
+        <rect x="15" y="15" width="2" height="2" fill="white" /> <!-- Extra-Small White Square (2x2) -->
+    </svg>
+
+    <!-- Thin Eraser -->
+    <svg class="thickness-icon" id="thin-eraser" width="32" height="32">
+        <circle cx="16" cy="16" r="16" fill="black" />
+        <rect x="14" y="14" width="4" height="4" fill="white" /> <!-- Small White Square (4x4) -->
+    </svg>
+
+    <!-- Medium Eraser -->
+    <svg class="thickness-icon" id="medium-eraser" width="32" height="32">
+        <circle cx="16" cy="16" r="16" fill="black" />
+        <rect x="12" y="12" width="8" height="8" fill="white" /> <!-- Medium White Square (8x8) -->
+    </svg>
+
+    <!-- Thick Eraser -->
+    <svg class="thickness-icon" id="thick-eraser" width="32" height="32">
+        <circle cx="16" cy="16" r="16" fill="black" />
+        <rect x="10" y="10" width="12" height="12" fill="white" /> <!-- Large White Square (12x12) -->
+    </svg>
+
+    <!-- Extra-Thick Eraser -->
+    <svg class="thickness-icon" id="extra-thick-eraser" width="32" height="32">
+        <circle cx="16" cy="16" r="16" fill="black" />
+        <rect x="8" y="8" width="16" height="16" fill="white" /> <!-- Extra-Large White Square (16x16) -->
+    </svg>
+
+    <i class="fas fa-trash-alt toolbar-icon" id="clear-screen"></i>
+
+</div>
+
+
+<!-- Flating Menu for Toolbox -->
+<div class="floating-menu" id="toolbox-menu">
+    <!-- Extra-Small Toolbox -->
+    <svg class="thickness-icon" id="extra-small-toolbox" width="32" height="32">
+        <circle cx="16" cy="16" r="16" fill="black" />
+        <circle cx="16" cy="16" r="2" fill="white" /> <!-- Extra-Small White Circle -->
+    </svg>
+
+    <!-- Small Toolbox -->
+    <svg class="thickness-icon" id="small-toolbox" width="32" height="32">
+        <circle cx="16" cy="16" r="16" fill="black" />
+        <circle cx="16" cy="16" r="4" fill="white" /> <!-- Small White Circle -->
+    </svg>
+
+    <!-- Medium Toolbox -->
+    <svg class="thickness-icon" id="medium-toolbox" width="32" height="32">
+        <circle cx="16" cy="16" r="16" fill="black" />
+        <circle cx="16" cy="16" r="8" fill="white" /> <!-- Medium White Circle -->
+    </svg>
+
+    <!-- Large Toolbox -->
+    <svg class="thickness-icon" id="large-toolbox" width="32" height="32">
+        <circle cx="16" cy="16" r="16" fill="black" />
+        <circle cx="16" cy="16" r="11" fill="white" /> <!-- Large White Circle -->
+    </svg>
+
+    <!-- Extra-Large Toolbox -->
+    <svg class="thickness-icon" id="extra-large-toolbox" width="32" height="32">
+        <circle cx="16" cy="16" r="16" fill="black" />
+        <circle cx="16" cy="16" r="14" fill="white" /> <!-- Extra-Large White Circle -->
+    </svg>
+
+    <i class="fas fa-splat toolbar-icon" id="clear-screen"></i>
+
+</div>
+
+<script src="js/app.js"></script>
+<script src="js/fix-webm-duration.js"></script>
+<script src="js/intro.js"></script>
+<script src="js/helptour.js"></script>
+
+</body>
+</html>

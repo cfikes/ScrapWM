@@ -1,0 +1,617 @@
+body {
+    margin: 0;
+    overflow: hidden;
+    background-color: black;
+    user-select: none;
+}
+
+#camera-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: absolute; /* Use absolute positioning */
+    top: 50%; /* Center vertically */
+    left: 50%; /* Center horizontally */
+    transform: translate(-50%, -50%); /* Adjust to be perfectly centered */
+}
+
+
+video, canvas {
+    position: absolute;
+    top: 0;
+    left: 0;
+}
+
+#toolbar {
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    height: 64px;
+    background-color: lightgray;
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    border-radius: 0px 0px 10px 10px;
+    padding: 5px;
+    backdrop-filter: blur(10px);
+    user-select: none;
+    transition: bottom 0.3s ease; /* Smooth animation */
+}
+
+.toolbar-minimized {
+    bottom: -64px !important;
+    
+}
+#toolbar-view-control {
+    position: fixed;
+    transition: bottom 0.3s ease;
+    bottom: 64px;
+    right: 0px;
+    display: block;
+    height: 30px;
+    width: 30px;
+    font-size: 20px;
+    line-height: 30px;
+    border-radius: 10px;
+    text-align: center;
+    background-color: lightgray;
+    color: black;
+}
+.toolbar-view-control-minimized {
+    bottom: 0px !important;
+}
+
+
+
+.toolbar-icon {
+    display: inline-flex; /* Flexbox to center the icon */
+    justify-content: center;
+    align-items: center;
+    width: 40px; 
+    height: 40px;
+    font-size: 32px;
+    border-radius: 50%;
+}
+
+.toolbar-icon.disabled {
+    pointer-events: none; /* Disable interaction */
+    opacity: 0.5; /* Optional: Dim the icons to indicate they are disabled */
+}
+
+.toolbar-icon:active {
+    transform: scale(1.3);
+}
+
+.floating-menu {
+    border: 1px solid #ccc;
+    background: lightgray;
+    border-radius: 4px 4px 0px 0px ;
+    position: absolute;
+    bottom: 74px;
+    padding: 5px;
+    display: none;
+    white-space: nowrap;
+    user-select: none;
+    height: 44px;
+    line-height: 44px;
+}
+
+.floating-menu i {
+    margin-right: 8px;
+}
+
+#camera-select-menu, #resolution-select-menu, #pip-select-menu, #pip-resolution-select-menu {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    padding: 10px;
+    background-color: lightgray;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    display: none;
+    width: 340px;;
+}
+
+#camera-select-menu select, #resolution-select-menu select {
+    width: 100%;
+    margin-bottom: 10px;
+}
+
+#camera-select-menu button, #resolution-select-menu button {
+    padding: 5px 10px;
+}
+
+#custom-color {
+    margin-top: 5px;
+}
+
+.highlight {
+    background-color: #ddd;
+}
+
+.color-selected {
+    border: 2px solid black;
+}
+
+.thickness-icon {
+    vertical-align: middle;
+    display: inline-block;
+    margin-right: 8px;
+    margin-top: -16px;
+}
+
+.thickness-icon:active {
+    transform: scale(1.2);
+}
+
+#heart-popup-menu {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    padding: 20px;
+    background-color: lightgray;
+    border: 2px solid #ccc;
+    border-radius: 10px;
+    box-shadow: 0 0 15px rgba(0, 0, 0, 0.3);
+    text-align: center;
+    z-index: 9999;
+    display: none;
+}
+
+#donate-btn {
+    text-decoration: wavy;
+    color: black;
+}
+
+
+.tool-selected {
+    box-shadow: 0 0 10px 2px rgba(0, 128, 255, 0.8); /* Blue glow */
+    border-radius: 50%; /* Circle shape for the glow */
+}
+
+.thickness-selected {
+    box-shadow: 0 0 5px 2px rgba(0, 128, 255, 0.8); /* Blue glow for thickness */
+    border-radius: 50%; /* Circle shape */
+}
+
+#loading-popup {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    padding: 20px;
+    background-color: lightgray;
+    border: 2px solid #ccc;
+    border-radius: 10px;
+    box-shadow: 0 0 15px rgba(0, 0, 0, 0.3);
+    text-align: center;
+    z-index: 9999;
+    display: none;
+}
+
+.fa-spinner {
+    font-size: 2rem;
+    animation: spin 1s linear infinite;
+}
+
+@keyframes spin {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+}
+
+#pencil-menu {
+    background-color: lightgrey;
+}
+
+/* emoji Styling */
+#emoji-menu {
+    background-color: lightgray;
+
+}
+
+.emoji-item {
+    display: inline-flex; /* Use flexbox for centering */
+    justify-content: center;
+    align-items: center;
+    width: 38px;
+    height: 38px;
+    font-size: 38px;
+    border-radius: 50%;
+    text-align: center;
+}
+
+.fav-emoji {
+    display: inline-flex; /* Use flexbox for centering */
+    justify-content: center;
+    align-items: center;
+    width: 38px;
+    height: 38px;
+    font-size: 38px;
+    border-radius: 50%;
+    text-align: center;
+}
+
+.emoji-item:active {
+    transform: scale(1.2);
+}
+
+.emoji-selected {
+    box-shadow: 0 0 5px 2px rgba(0, 128, 255, 0.8); /* Blue glow */
+    border-radius: 50%;
+}
+
+
+#emoji-search {
+    margin-left: 8px;
+    margin-top: -5px;
+}
+
+.emoji-search-popup {
+    position: absolute;
+    top: 30px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 640px; /* Wider menu */
+    padding: 10px;
+    background-color: lightgray;
+    border: 1px solid #ccc;
+    border-radius: 8px;
+    box-shadow: 0 0 15px rgba(0, 0, 0, 0.2);
+    z-index: 1000;
+    display: flex;
+    flex-direction: column; /* Stack emojis above the search input */
+    align-items: center;
+}
+
+.emoji-search-container {
+    display: flex;
+    align-items: center;
+    width: 100%;
+}
+
+#emoji-search-input {
+    width: 100%;
+    padding: 8px;
+    font-size: 16px;
+    background-color: #f0f0f0;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    box-sizing: border-box;
+}
+
+#clear-search {
+    margin-left: -38px;
+    font-size: 28px;
+    color: #000000;
+    cursor: pointer;
+    display: none;
+}
+
+.emoji-search-results {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(50px, 1fr));
+    grid-auto-rows: 50px;
+    grid-gap: 10px;
+    max-height: 300px; /* Approximately 4 rows */
+    overflow-y: auto;
+    margin-top: 10px;
+    width: 100%;
+    text-align: center;
+    user-select: none;
+}
+
+#emoji-preview {
+    pointer-events: none; /* So it doesn't interfere with the cursor */
+    transform: translate(-50%, -50%);
+    z-index: 1000; /* Ensure it's always on top */
+    position: absolute;
+}
+
+#eraser-preview {
+    position: absolute;
+    pointer-events: none; /* Prevent it from interfering with mouse events */
+    display: none; 
+    z-index: 1000; 
+    border-radius: 0;
+    background-color: rgba(255, 182, 193, 0.4); /* Light pink background with transparency */
+    border: 3px solid rgba(255, 105, 135, 0.6); /* Darker border with a bit less transparency */
+    border-radius: 3px;
+}
+
+#pencil-preview {
+    position: absolute;
+    pointer-events: none;
+    border: 2px solid transparent;
+    border-radius: 50%; 
+    display: none; 
+    z-index: 1000;
+}
+
+/* Material Overrrides */
+select {
+    font-family: 'Roboto', sans-serif;
+    font-size: 16px;
+    padding: 10px;
+    padding-right: 32px; /* Space for custom arrow */
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    background-color: #fff;
+    color: #333;
+    width: 100%;
+    appearance: none;
+    outline: none;
+    box-shadow: none;
+    transition: border-color 0.2s ease, box-shadow 0.2s ease;
+    background-image: url('data:image/svg+xml;charset=US-ASCII,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 4 5"><path fill="%23757575" d="M2 0L0 2h4z"/></svg>');
+    background-repeat: no-repeat;
+    background-position: right 10px center;
+    background-size: 12px 12px;
+}
+
+/* Hover effect */
+select:hover {
+    border-color: #999;
+}
+
+/* Focus effect with Material Design blue */
+select:focus {
+    border-color: #3f51b5;
+    box-shadow: 0 2px 8px rgba(63, 81, 181, 0.2); /* Slight shadow on focus */
+}
+
+h3 {
+    font-family: 'Roboto', sans-serif; /* Use the Roboto font */
+    font-size: 24px; /* Appropriate size for headings in Material */
+    font-weight: 500; /* Semi-bold weight for heading emphasis */
+    color: #333; /* Dark text color */
+    margin-bottom: 16px; /* Spacing below the heading */
+    letter-spacing: 0.5px; /* Slight letter spacing for readability */
+    
+}
+
+input[type="text"], input[type="number"], input[type="email"], input[type="password"] {
+    font-family: 'Roboto', sans-serif; /* Use the Roboto font */
+    font-size: 16px; /* Material Design input font size */
+    padding: 10px; /* Internal padding */
+    border: 2px solid #e0e0e0; /* Light border */
+    border-radius: 4px; /* Slightly rounded corners for a smooth look */
+    width: 100%; /* Make input take the full width */
+    box-sizing: border-box; /* Ensure padding is included in the width */
+    background-color: #fff; /* White background */
+    color: #333; /* Dark text color */
+    transition: border-color 0.3s, box-shadow 0.3s; /* Smooth transition for focus */
+}
+
+/* Focused input styling */
+input[type="text"]:focus, input[type="number"]:focus, input[type="email"]:focus, input[type="password"]:focus {
+    outline: none; /* Remove the default blue outline */
+    border-color: #6200ee; /* Purple border on focus (Material color) */
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1); /* Slight shadow for focus effect */
+}
+
+input[type="color"]{
+    height: 32px;
+    margin-top: 0px;
+    border-radius: 10%;
+    border: none;
+}
+
+.mdc-button {
+    display: inline-flex; /* Flex to align the icon and text */
+    align-items: center; /* Center the icon and text vertically */
+    justify-content: center; /* Center the button contents */
+    font-family: 'Roboto', sans-serif;
+    font-size: 18px;
+    padding: 8px 10px; /* Adjust padding to match emoji size */
+    background-color: #6200ee; /* Material Design Purple */
+    color: white;
+    border-radius: 4px; /* Make the button round */
+    border: none;
+    cursor: pointer;
+    transition: background-color 0.3s;
+    height: 40px; /* Same as emoji size */
+    margin-top: 10px;
+    margin-right: 5px;
+}
+
+
+#toolbox-menu {
+    background-color: lightgray;
+}
+
+#flash-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: white;
+    opacity: 0;
+    z-index: 9999; /* Ensure it's on top of everything */
+    pointer-events: none; /* Allow clicks to pass through */
+}
+
+/* Recording Options Menu Styles */
+#recording-options-menu {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background-color: lightgray;
+    padding: 20px;
+    border: 2px solid #ccc;
+    border-radius: 5px;
+    z-index: 1000;
+}
+
+#recording-options-menu h3 {
+    font-family: 'Roboto', sans-serif;
+    font-size: 24px;
+    font-weight: 500;
+    color: #333;
+    margin-bottom: 16px;
+    letter-spacing: 0.5px;
+}
+
+#recording-options-menu label {
+    display: block;
+    margin-bottom: 8px;
+    font-family: 'Roboto', sans-serif;
+    font-size: 18px;
+    color: #333;
+}
+
+#recording-options-menu select {
+    width: 100%;
+    padding: 8px;
+    margin-bottom: 16px;
+    font-family: 'Roboto', sans-serif;
+    font-size: 16px;
+    border: 2px solid #e0e0e0;
+    border-radius: 4px;
+    background-color: #fff;
+    color: #333;
+    box-sizing: border-box;
+    outline: none;
+    transition: border-color 0.3s, box-shadow 0.3s;
+}
+
+
+/* Checkbox Container */
+.checkbox-container {
+    display: flex;
+    align-items: center;
+    margin-bottom: 16px;
+}
+
+/* Custom Checkbox Style */
+.checkbox-container input[type="checkbox"] {
+    appearance: none;
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    position: relative;
+    width: 24px;
+    height: 24px;
+    margin: 0 8px 0 0;
+    border: 2px solid #6200ee; /* Purple border to match your buttons */
+    border-radius: 4px;
+    background-color: white;
+    cursor: pointer;
+}
+
+/* Checkbox Checked State */
+.checkbox-container input[type="checkbox"]:checked::before {
+    content: "";
+    position: absolute;
+    left: 6px;
+    top: 2px;
+    width: 6px;
+    height: 12px;
+    border: solid #6200ee; /* Same purple color */
+    border-width: 0 2px 2px 0;
+    transform: rotate(45deg);
+}
+
+/* Checkbox Hover Effect */
+.checkbox-container input[type="checkbox"]:hover {
+    border-color: #333;
+}
+
+/* Label Styling */
+.checkbox-container label {
+    font-family: 'Roboto', sans-serif;
+    font-size: 18px;
+    color: #333;
+    cursor: pointer;
+}
+
+/* Flashing animation */
+@keyframes flashing {
+    0% { opacity: 1; }
+    50% { opacity: 0.3; }
+    100% { opacity: 1; }
+}
+
+/* Class to apply the flashing animation */
+.flashing {
+    animation: flashing 1s infinite;
+}
+
+#pip-container {
+    position: absolute;
+    bottom: 100px;
+    right: 20px;
+    width: 320px; /* Starting size */
+    height: 180px; /* Starting size */
+    overflow: hidden; /* Hide overflow if video size is different */
+    transition: width 0.4s ease, height 0.4s ease, top 0.4s ease, left 0.4s ease; /* Smooth transition for resizing and positioning */
+    display: none;
+}
+
+#expand-pip {
+    position: absolute;
+    top: 10px;
+    left: 10px;
+    font-size: 24px;
+    color: white;
+    background-color: rgba(0, 0, 0, 0.5);
+    padding: 5px;
+    border-radius: 50%;
+    cursor: pointer;
+    z-index: 2;
+    opacity: 0.5;
+}
+#expand-pip:hover {
+    opacity: 1;
+}
+
+#toggle-position-pip {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    font-size: 24px;
+    color: white;
+    background-color: rgba(0, 0, 0, 0.5);
+    padding: 5px;
+    border-radius: 50%;
+    cursor: pointer;
+    z-index: 2;
+    opacity: 0.5;
+}
+#toggle-position-pip:hover {
+    opacity: 1;
+}
+
+#pip {
+    width: 100%;
+    height: 100%;
+    object-fit: cover; /* Scale the video */
+    z-index: 1; /* Ensure video stays behind the icon */
+    pointer-events: none; /* Allow interaction with the icon */
+}
+
+#recording-info {
+    font-family: 'Roboto', sans-serif;
+    font-weight: bold;
+    letter-spacing: 1px;
+    width: 75px;
+    text-align: center;
+}
+
+#recording-duration {
+    display: none;
+    position: fixed;
+    background-color: lightgray;
+    color: black;
+    padding: 10px;
+    border-radius: 5px;
+    font-size: 18px;
+    z-index: 9999;
+    width: 75px;
+    transform: translateX(-50%);
+}
+

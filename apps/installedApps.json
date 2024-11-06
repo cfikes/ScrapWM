@@ -39,6 +39,19 @@
         "data-subscriptions": []
     },
     {
+        "data-app-name": "DocCam V2",
+        "data-app-url": "apps/doccam/index.html",
+        "data-app-icon": "apps/doccam/icon.png",
+        "data-window-title": "DocCam V2",		
+        "data-window-statusbar-text": "",
+        "data-window-size": "1024x768",
+        "data-window-minsize": "800x600",
+        "data-window-noresize": false,
+        "data-multiwindow": true,
+        "data-file-associations" : [],
+        "data-subscriptions": []
+    },
+    {
         "data-app-name": "File Browser",
         "data-app-url": "apps/filebrowser/index.html",
         "data-app-icon": "apps/filebrowser/icon.png",
