@@ -10,7 +10,7 @@ Windows Manager and application framework for creating a desktop like experience
   * About ScrapWM and Licensing
 * Audio Preview
   * Installed as User Application
-  * Has file associations with mp3
+  * Has file associations with mp3, wav and ogg
   * Plays audio files and integrates into the sbus for file handling
 * Calculator
   * Installed as User Application
@@ -83,3 +83,5 @@ sbus.playSound("notification");
 | playSound("") | Play a sound of types notification,email, or message cache | 
 | incrementSystemCounter("") | Increments counters located in systemtray of types calendar, mail, message, and voip. |
 | updateSystemCounter("") | Sets counters located in systemtray of types calendar, mail, message and voip | 
+
+
