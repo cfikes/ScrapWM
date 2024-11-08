@@ -78,6 +78,19 @@
         "data-subscriptions": []
     },
     {
+        "data-app-name": "ScrapEmu",
+        "data-app-url": "apps/scrapemu/index.html",
+        "data-app-icon": "apps/scrapemu/icon.png",
+        "data-window-title": "ScrapEmu",
+        "data-window-statusbar-text": "",
+        "data-window-size": "800x600",
+        "data-window-minsize": "800x600",
+        "data-window-noresize": false,
+        "data-multiwindow": false,
+        "data-file-associations" : [],
+        "data-subscriptions": []
+    },
+    {
         "data-app-name": "Text Preview",
         "data-app-url": "apps/textpreview/index.html",
         "data-app-icon": "apps/textpreview/icon.png",

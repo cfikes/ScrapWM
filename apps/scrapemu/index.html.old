@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Library View</title>
+<link rel="stylesheet" href="styles.css">
+</head>
+<body>
+
+<!-- Top Navigation -->
+<div class="top-nav">
+    <button class="active">Library</button>
+    <button>Save States</button>
+    <button>Screenshots</button>
+    <button>Homebrew</button>
+    <button>Settings</button>
+    <input type="search" placeholder="Search">
+</div>
+
+<!-- Main Container -->
+<div class="container">
+    <!-- Sidebar -->
+    <div class="sidebar">
+        <ul>
+            <li>Atari 2600</li>
+            <li>Atari 5200</li>
+            <li>Atari 7800</li>
+            <li>Atari Lynx</li>
+            <li>ColecoVision</li>
+            <li>Famicom Disk System</li>
+            <li>Game Boy</li>
+            <li>Game Boy Advance</li>
+            <li>Game Gear</li>
+            <li>Intellivision</li>
+            <li>NeoGeo Pocket</li>
+            <li class="active"><img src="img/icons/NES.png" alt="NES Icon">Nintendo (NES)</li>
+            <li>Nintendo 64</li>
+            <li>Nintendo DS</li>
+            <li>Odyssey²</li>
+            <li>PC-FX</li>
+            <li>SG-1000</li>
+            <li>Sega 32X</li>
+            <li>Sega CD</li>
+            <li>Sega Genesis</li>
+        </ul>
+    </div>
+
+    <!-- Grid View -->
+    <div class="grid-view">
+        <div class="grid-item">
+            <img src="img/boxart/nes/Castlevania (USA).png" alt="Castlevania">
+            <h3>Castlevania</h3>
+        </div>
+        <div class="grid-item">
+            <img src="img/boxart/nes/Contra (USA).png" alt="Contra">
+            <h3>Contra</h3>
+        </div>
+        <div class="grid-item">
+            <img src="img/boxart/nes/Kirby_s Adventure (USA).png" alt="Kirby's Adventure">
+            <h3>Kirby's Adventure</h3>
+        </div>
+        <div class="grid-item">
+            <img src="img/boxart/nes/Legend of Zelda, The (USA).png" alt="The Legend of Zelda">
+            <h3>The Legend of Zelda</h3>
+        </div>
+        <div class="grid-item">
+            <img src="img/boxart/nes/Metroid (USA).png" alt="Metroid">
+            <h3>Metroid</h3>
+        </div>
+        <div class="grid-item">
+            <img src="img/boxart/nes/Mike Tyson_s Punch Out!! (USA).png" alt="Mike Tyson's Punch-Out!!">
+            <h3>Mike Tyson's Punch-Out!!</h3>
+        </div>
+        <div class="grid-item">
+            <img src="img/boxart/nes/Super Mario Bros. 3 (USA).png" alt="Super Mario Bros. 3">
+            <h3>Super Mario Bros. 3</h3>
+        </div>
+        <div class="grid-item">
+            <img src="img/boxart/nes/Zelda II - The Adventure of Link (USA).png" alt="Zelda II">
+            <h3>Zelda II</h3>
+        </div>
+    </div>
+</div>
+
+</body>
+</html>

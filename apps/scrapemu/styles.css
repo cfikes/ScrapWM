@@ -1,0 +1,208 @@
+body {
+    font-family: Arial, sans-serif;
+    background-color: #333;
+    color: #ddd;
+    margin: 0;
+    padding: 0;
+    overflow: hidden;
+}
+
+.top-nav {
+    display: flex;
+    align-items: center;
+    padding: 10px;
+    background-color: #444;
+    color: #ddd;
+}
+
+.top-nav button {
+    background-color: #555;
+    border: none;
+    color: #ddd;
+    padding: 8px 15px;
+    font-size: 16px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+    border-right: 1px solid #444; /* Add border between buttons */
+}
+
+/* First button - rounded on the left side */
+.top-nav button:first-child {
+    border-radius: 5px 0 0 5px;
+}
+
+/* Last button - rounded on the right side */
+.top-nav button:last-child {
+    border-radius: 0 5px 5px 0;
+    border-right: none; /* Remove border on the last button */
+}
+
+.top-nav button.active {
+    background-color: #222;
+    color: #fff;
+    cursor: default;
+}
+
+.top-nav button:hover:not(.active) {
+    background-color: #666;
+}
+
+.top-nav input[type="search"] {
+    margin-left: auto;
+    padding: 5px 10px;
+    font-size: 16px;
+    background-color: #555;
+    color: #ddd;
+    border-radius: 4px;
+    border: none;
+    caret-color: #00bcd4;
+    outline: none;
+    -webkit-appearance: none;
+}
+
+.top-nav input[type="search"]::placeholder {
+    color: #ddd;
+    opacity: 0.7;
+}
+
+.top-nav input[type="search"] {
+    margin-left: auto;
+    padding: 5px 10px;
+    font-size: 16px;
+    background-color: #555;
+    color: #ddd; /* Text color */
+    border-color: #333;
+    border-radius: 4px;
+    border: none;
+    -webkit-appearance: none; /* Removes default styling on iOS */
+}
+
+.top-nav input[type="search"]:focus {
+    outline: none; /* Ensures no outline appears on focus */
+}
+
+.top-nav input[type="search"]::placeholder {
+    color: #ddd; /* Placeholder color */
+    opacity: 0.7; /* Adjust for subtlety */
+}
+
+/* Remove default X in search input on Edge/IE */
+.top-nav input[type="search"]::-ms-clear {
+    display: none;
+}
+
+/* Style the clear button in WebKit browsers (Chrome, Safari) */
+.top-nav input[type="search"]::-webkit-search-cancel-button {
+    -webkit-appearance: none;
+    height: 16px;
+    width: 16px;
+    background-image: url('data:image/svg+xml;charset=utf8,%3Csvg xmlns="http://www.w3.org/2000/svg" fill="%23ddd" viewBox="0 0 24 24"%3E%3Cpath d="M18.36 5.64a1 1 0 0 0-1.42 0L12 10.59 7.05 5.64a1 1 0 1 0-1.42 1.42L10.59 12l-4.95 4.95a1 1 0 1 0 1.42 1.42L12 13.41l4.95 4.95a1 1 0 0 0 1.42-1.42L13.41 12l4.95-4.95a1 1 0 0 0 0-1.42z"/%3E%3C/svg%3E');
+    background-repeat: no-repeat;
+    background-position: center;
+    cursor: pointer;
+}
+
+/* Layout */
+.container {
+    display: flex;
+    height: calc(100vh - 50px); /* Adjust height based on top-nav */
+}
+
+/* Sidebar */
+.sidebar {
+    width: 250px;
+    background-color: #333;
+    padding: 20px;
+    overflow-y: auto;
+    border-right: 1px solid #444;
+}
+
+/* Sidebar Scrollbar */
+.sidebar::-webkit-scrollbar {
+    width: 16px;
+}
+
+.sidebar::-webkit-scrollbar-track {
+    background: #333; /* Match the sidebar background */
+}
+
+.sidebar::-webkit-scrollbar-thumb {
+    background-color: #555; /* Darker gray for the thumb */
+    border-radius: 4px;
+    border: 2px solid #333; /* Adds a slight margin to the thumb */
+}
+
+.sidebar ul {
+    list-style-type: none;
+    padding: 0;
+}
+
+.sidebar li {
+    margin: 0;
+    color: #ddd;
+    cursor: pointer;
+    padding: 8px;
+}
+
+.sidebar li img {
+    width: 20px; /* Adjust icon size */
+    height: 20px;
+    margin-right: 10px;
+    vertical-align: middle;
+}
+
+.sidebar li.active {
+    background-color: #222; /* Darker background for active item */
+    color: #fff;
+    padding: 8px;
+    border-radius: 4px;
+}
+
+.sidebar li:hover:not(.active) {
+    color: #fff;
+    background-color: #444;
+}
+
+/* Grid View */
+.grid-view {
+    flex: 1;
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+    gap: 15px;
+    padding: 20px;
+    overflow-y: auto;
+    background-color: #222;
+}
+
+/* Grid View Scrollbar */
+.grid-view::-webkit-scrollbar {
+    width: 16px;
+}
+
+.grid-view::-webkit-scrollbar-track {
+    background: #222; /* Match the grid view background */
+}
+
+.grid-view::-webkit-scrollbar-thumb {
+    background-color: #555; /* Darker gray for the thumb */
+    border-radius: 4px;
+    border: 2px solid #222; /* Adds a slight margin to the thumb */
+}
+
+.grid-item {
+    text-align: center;
+    color: #ddd;
+}
+
+.grid-item img {
+    width: 100%;
+    height: auto;
+    border-radius: 8px;
+    margin-bottom: 8px;
+}
+
+.grid-item h3 {
+    font-size: 14px;
+    font-weight: normal;
+    margin: 0;
+}
