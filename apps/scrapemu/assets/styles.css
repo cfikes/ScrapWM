@@ -44,7 +44,23 @@ body {
     width: 250px;
     background-color: #333;
     padding: 20px;
+    overflow-y: auto;
   }
+  /* Sidebar Scrollbar */
+.sidebar::-webkit-scrollbar {
+  width: 16px;
+}
+
+.sidebar::-webkit-scrollbar-track {
+  background: #333; /* Match the sidebar background */
+}
+
+.sidebar::-webkit-scrollbar-thumb {
+  background-color: #555; /* Darker gray for the thumb */
+  border-radius: 4px;
+  border: 2px solid #333; /* Adds a slight margin to the thumb */
+}
+
   .sidebar ul {
     list-style-type: none;
     padding: 0;
@@ -85,8 +101,24 @@ body {
     grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
     gap: 15px;
     padding: 20px;
+    overflow-y: auto;
     background-color: #222;
-  }
+}
+
+/* Grid View Scrollbar */
+.grid-view::-webkit-scrollbar {
+    width: 16px;
+}
+
+.grid-view::-webkit-scrollbar-track {
+    background: #222; /* Match the grid view background */
+}
+
+.grid-view::-webkit-scrollbar-thumb {
+    background-color: #555; /* Darker gray for the thumb */
+    border-radius: 4px;
+    border: 2px solid #222; /* Adds a slight margin to the thumb */
+}
   .grid-item {
     text-align: center;
     color: #ddd;
